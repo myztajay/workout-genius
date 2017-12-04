@@ -1,53 +1,96 @@
+/*jshint esversion: 6 */ 
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const passport = require('passport');
-const facebookStrategy = require('passport-facebook');
-require('dotenv').config()
+
+const facebookStrategy = require('passport-facebook').Strategy;
+const expressSession = require('express-session');
+const db = require('./models');
+
 
 
 //middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(expressSession({ secret: process.env.EXPRESS_SESSION_SECRET }));
 app.use(express.static(__dirname + '/public'));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(require('express-session')({ secret: process.env.EXPRESS_SESSION_SECRET, resave: true, saveUninitialized: true }));
 
 
+//Passport facebook strategy
 passport.use(new facebookStrategy({
   clientID: process.env.FACEBOOK_APP_ID ,
   clientSecret: process.env.FACEBOOK_SECRET_ID,
-  callbackURL: 'http://localhost:4040/auth/facebook/callback'
-}, 
-(accessToken, refreshToken, profile, cb) => {
-    return cb(null, profile);
-}))
-
-
-app.get('/', (req,res )=>{
-  res.sendFile('index.html')
-})
-
-passport.serializeUser(function(user, cb) {
-  cb(null, user);
+  callbackURL: 'http://localhost:4040/auth/facebook/callback',
+  profileFields: ['id', 'displayName', 'email']
+},
+function(accessToken, refreshToken, profile, done) {
+  console.log("this is the prfole id : " + JSON.stringify(profile))
+  debugger
+   db.User.findOne({fbId : profile.id}, function(err, oldUser){
+       if(oldUser){
+           done(null,oldUser);
+       }else{
+           var newUser = new db.User({
+               facebook_idb : profile.id ,
+               email : profile.emails[0].value,
+               display_name : profile.displayName,
+               // picture: profile.picture
+           }).save(function(err,newUser){
+               if(err) throw err;
+               done(null, newUser);
+           });
+       }
+   });
+ }
+));
+passport.serializeUser((user, cb) => cb(null, user));
+passport.deserializeUser(function(id, done) {
+    db.User.findById(id,function(err,user){
+        if(err) done(err);
+        if(user){
+            done(null,user);
+        }else{
+            Users.findById(id, function(err,user){
+                if(err) done(err);
+                done(null,user);
+            });
+        }
+    });
 });
 
-passport.deserializeUser(function(obj, cb) {
-  cb(null, obj);
-});
+function authenticatedOrNot(req, res, next){
+    if(req.isAuthenticated()){
+        next();
+    }else{
+        res.redirect("/login");
+    }
+}
 
-app.get('/auth/facebook', passport.authenticate('facebook'));
+function userExist(req, res, next) {
+    Users.count({
+        username: req.body.username
+    }, function (err, count) {
+        if (count === 0) {
+            next();
+        } else {
+            // req.session.error = "User Exist"
+            res.redirect("/singup");
+        }
+    });
+}
 
-app.get('/auth/facebook/callback',
-  // passport.authenticate('facebook', { failureRedirect: '/login' }),
-  function(req, res) {
-    // Successful authentication, redirect home.
-    res.redirect('/');
-  });
+app.get('/', (req,res )=>res.sendFile('index.html'));
+app.get('/auth/facebook', passport.authenticate('facebook', { scope:"email"}));
+app.get("/auth/facebook/callback",
+    passport.authenticate("facebook",{ failureRedirect: '/login'}),
+    function(req,res){
+        res.render("index", {user : req.user});
+        
+    }
+);
 
-
-
-app.listen(process.env.PORT || 4040, ()=>{
-  console.log("server started");
-})
+app.listen(process.env.PORT || 4040)
