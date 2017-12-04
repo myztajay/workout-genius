@@ -4,10 +4,10 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const passport = require('passport');
-
 const facebookStrategy = require('passport-facebook').Strategy;
 const expressSession = require('express-session');
 const db = require('./models');
+const workoutRoutes = require('./routes/workouts');
 
 
 
@@ -47,6 +47,7 @@ function(accessToken, refreshToken, profile, done) {
    });
  }
 ));
+
 passport.serializeUser((user, cb) => cb(null, user));
 passport.deserializeUser(function(id, done) {
     db.User.findById(id,function(err,user){
@@ -92,5 +93,10 @@ app.get("/auth/facebook/callback",
         
     }
 );
+app.use('/api/workouts', workoutRoutes);
 
+app.get('/user', function(req, res){
+  var user_id = req.user
+  console.log(user_id);
+});
 app.listen(process.env.PORT || 4040)
