@@ -1,19 +1,40 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Login from './components/Login'
+import axios from 'axios'
 
 class App extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      loggedIn: false,
+      user: {}
+    }
+  }
+  
+  componentDidMount(){
+    axios.get('api/userauth')
+    .then((res)=>{
+      this.setState({userId: res.data})
+    })
+  }
+  
+  logInWithFacebook(){
+    window.location.href = 'api/auth/facebook' 
+    // do a call to backed and fire off LOGIN
+    // return loggedin user ID from local database
+  }
+  signUpWithFacebook(){
+    // do a call to backed and fire off SIGNUP
+    // return loggedin user ID from local database
+  }
+  
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <Login 
+      loggedIn={this.state.loggedIn} 
+      logInWithFacebook={this.logInWithFacebook.bind(this)}
+      />
     );
   }
 }

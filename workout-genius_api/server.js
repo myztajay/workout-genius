@@ -2,6 +2,7 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const facebookStrategy = require('passport-facebook').Strategy;
@@ -18,18 +19,19 @@ app.use(expressSession({ secret: process.env.EXPRESS_SESSION_SECRET }));
 app.use(express.static(__dirname + '/public'));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(cors({origin: 'http://localhost:3000'}));
+
+
 
 
 //Passport facebook strategy
 passport.use(new facebookStrategy({
   clientID: process.env.FACEBOOK_APP_ID ,
   clientSecret: process.env.FACEBOOK_SECRET_ID,
-  callbackURL: 'http://localhost:4040/auth/facebook/callback',
+  callbackURL: '/api/auth/facebook/callback',
   profileFields: ['id', 'displayName', 'email']
 },
 function(accessToken, refreshToken, profile, done) {
-  console.log("this is the prfole id : " + JSON.stringify(profile))
-  debugger
    db.User.findOne({fbId : profile.id}, function(err, oldUser){
        if(oldUser){
            done(null,oldUser);
@@ -63,40 +65,20 @@ passport.deserializeUser(function(id, done) {
     });
 });
 
-function authenticatedOrNot(req, res, next){
-    if(req.isAuthenticated()){
-        next();
-    }else{
-        res.redirect("/login");
-    }
-}
-
-function userExist(req, res, next) {
-    Users.count({
-        username: req.body.username
-    }, function (err, count) {
-        if (count === 0) {
-            next();
-        } else {
-            // req.session.error = "User Exist"
-            res.redirect("/singup");
-        }
-    });
-}
 
 app.get('/', (req,res )=>res.sendFile('index.html'));
-app.get('/auth/facebook', passport.authenticate('facebook', { scope:"email"}));
-app.get("/auth/facebook/callback",
-    passport.authenticate("facebook",{ failureRedirect: '/login'}),
-    function(req,res){
-        res.render("index", {user : req.user});
-        
-    }
+app.get('/api/auth/facebook', passport.authenticate('facebook', { scope:"email"}));
+app.get('/api/userauth', (req,res) =>{
+  res.send(req.user)
+})
+
+app.get("/api/auth/facebook/callback",
+    passport.authenticate("facebook", { 
+      successRedirect: '/',
+      failureRedirect: '/'})
+    
 );
+
 app.use('/api/workouts', workoutRoutes);
 
-app.get('/user', function(req, res){
-  var user_id = req.user
-  console.log(user_id);
-});
 app.listen(process.env.PORT || 4040)
