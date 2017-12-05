@@ -9,8 +9,9 @@ const facebookStrategy = require('passport-facebook').Strategy;
 const expressSession = require('express-session');
 const db = require('./models');
 const workoutRoutes = require('./routes/workouts');
-
-
+const authRoutes = require('./routes/auth');
+const authHelpers = require('./helpers/auth');
+const passportHelpers = require('./helpers/passport');
 
 //middleware
 app.use(bodyParser.json());
@@ -21,64 +22,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(cors({origin: 'http://localhost:3000'}));
 
-
-
-
 //Passport facebook strategy
-passport.use(new facebookStrategy({
-  clientID: process.env.FACEBOOK_APP_ID ,
-  clientSecret: process.env.FACEBOOK_SECRET_ID,
-  callbackURL: '/api/auth/facebook/callback',
-  profileFields: ['id', 'displayName', 'email']
-},
-function(accessToken, refreshToken, profile, done) {
-   db.User.findOne({fbId : profile.id}, function(err, oldUser){
-       if(oldUser){
-           done(null,oldUser);
-       }else{
-           var newUser = new db.User({
-               facebook_idb : profile.id ,
-               email : profile.emails[0].value,
-               display_name : profile.displayName,
-               // picture: profile.picture
-           }).save(function(err,newUser){
-               if(err) throw err;
-               done(null, newUser);
-           });
-       }
-   });
- }
-));
-
-passport.serializeUser((user, cb) => cb(null, user));
-passport.deserializeUser(function(id, done) {
-    db.User.findById(id,function(err,user){
-        if(err) done(err);
-        if(user){
-            done(null,user);
-        }else{
-            Users.findById(id, function(err,user){
-                if(err) done(err);
-                done(null,user);
-            });
-        }
-    });
-});
-
-
-app.get('/', (req,res )=>res.sendFile('index.html'));
-app.get('/api/auth/facebook', passport.authenticate('facebook', { scope:"email"}));
-app.get('/api/userauth', (req,res) =>{
-  res.send(req.user)
-})
-
-app.get("/api/auth/facebook/callback",
-    passport.authenticate("facebook", { 
-      successRedirect: '/',
-      failureRedirect: '/'})
-    
-);
+passportHelpers.passportInit;
+passportHelpers.serialize;
+passportHelpers.deserialize;
 
 app.use('/api/workouts', workoutRoutes);
+app.use('/api/auth', authRoutes);
 
 app.listen(process.env.PORT || 4040)

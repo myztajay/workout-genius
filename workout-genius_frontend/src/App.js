@@ -13,10 +13,12 @@ class App extends Component {
   }
   
   componentDidMount(){
-    axios.get('api/userauth')
+    console.log("SDfdsf");
+    axios.get('api/auth/userauth')
     .then((res)=>{
-      this.setState({userId: res.data})
+      this.setState({user: res.data})
     })
+    .catch((res)=>{console.log(res);})
   }
   
   logInWithFacebook(){
