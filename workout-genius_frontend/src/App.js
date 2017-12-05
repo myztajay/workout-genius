@@ -13,12 +13,11 @@ class App extends Component {
   }
   
   componentDidMount(){
-    console.log("SDfdsf");
     axios.get('api/auth/userauth')
     .then((res)=>{
-      this.setState({user: res.data})
+      this.setState({user: res.data, loggedIn: true})    
     })
-    .catch((res)=>{console.log(res);})
+    .catch((err)=>{console.log(err);})
   }
   
   logInWithFacebook(){
@@ -27,6 +26,7 @@ class App extends Component {
     // return loggedin user ID from local database
   }
   signUpWithFacebook(){
+    window.location.href = 'api/auth/facebook' 
     // do a call to backed and fire off SIGNUP
     // return loggedin user ID from local database
   }
@@ -36,6 +36,7 @@ class App extends Component {
       <Login 
       loggedIn={this.state.loggedIn} 
       logInWithFacebook={this.logInWithFacebook.bind(this)}
+      signUpWithFacebook={this.signUpWithFacebook.bind()}
       />
     );
   }

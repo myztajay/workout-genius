@@ -1,14 +1,17 @@
 import React from 'react';
 
 
-const Login  = ({ loggedIn, logInWithFacebook }) => ( 
-  <div>
-    <a href='/api/auth/facebook' target='_self'> facebook</a>
-    <h1> Login Component {loggedIn}</h1>
-    <button onClick={logInWithFacebook}> Login with Facebook</button>
-    <button> Sign up with Facebook</button>
-  </div>
+const Login  = ({ loggedIn, logInWithFacebook, signUpWithFacebook, user }) => {
+  
+  return (
+    <div>
+      <h1> Login Component </h1>
+      <h3>{user}</h3>
+      <button onClick={logInWithFacebook}> Login with Facebook</button>
+      <button onClick={signUpWithFacebook}> Sign up with Facebook</button>
+    </div>
 )
+}
 
 
 export default Login
