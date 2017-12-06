@@ -2,7 +2,7 @@ const passport = require('passport');
 const facebookStrategy = require('passport-facebook').Strategy;
 const db = require('../models');
 
-exports.getAuthUser = (req,res) => res.send(req.user);
+exports.getAuthUser = (req,res) => res.send(req.user || 'Jimmy');
 exports.authFacebook = passport.authenticate('facebook', { scope:"email"});
 exports.authFacebookCallback = passport.authenticate("facebook", { 
   successRedirect: '/',

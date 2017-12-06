@@ -12,7 +12,7 @@
     "react-scripts": "1.0.17"
   },
   "proxy": {
-    "/api": {
+    "/api/auth":{
       "target": "http://localhost:4040/"
     }
   },

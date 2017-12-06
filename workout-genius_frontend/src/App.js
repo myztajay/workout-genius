@@ -13,7 +13,7 @@ class App extends Component {
   }
   
   componentDidMount(){
-    axios.get('api/auth/userauth')
+    axios.get('/api/auth/userauth')
     .then((res)=>{
       this.setState({user: res.data, loggedIn: true})    
     })
@@ -21,12 +21,12 @@ class App extends Component {
   }
   
   logInWithFacebook(){
-    window.location.href = 'api/auth/facebook' 
+    window.location.href = '/api/auth/facebook' 
     // do a call to backed and fire off LOGIN
     // return loggedin user ID from local database
   }
   signUpWithFacebook(){
-    window.location.href = 'api/auth/facebook' 
+    window.location.href = '/api/auth/facebook' 
     // do a call to backed and fire off SIGNUP
     // return loggedin user ID from local database
   }
