@@ -12,7 +12,10 @@
     "react-scripts": "1.0.17"
   },
   "proxy": {
-    "/api/auth":{
+    "/api/auth": {
+      "target": "http://localhost:4040/"
+    },
+    "/api/workout": {
       "target": "http://localhost:4040/"
     }
   },
