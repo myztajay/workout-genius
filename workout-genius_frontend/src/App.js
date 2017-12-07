@@ -3,7 +3,9 @@ import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Login from './components/Login'
 import axios from 'axios'
-
+import Split from 'grommet/components/Split';
+import Nav from './components/Nav'
+import '../node_modules/grommet-css'
 const Test = () => (
   <h1> hello from test</h1>
 )
@@ -46,7 +48,8 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div>
+        <Split flex='right'>
+        <Nav />
         <Switch>
         { !this.state.user 
         ?
@@ -63,7 +66,7 @@ class App extends Component {
         
         }
         </Switch>
-        </div>
+        </Split>
       </BrowserRouter>
     
     );
