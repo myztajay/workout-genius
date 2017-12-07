@@ -1,53 +1,36 @@
 import React, { Component } from 'react';
-import Title from 'grommet/components/Title';
-import Box from 'grommet/components/Box';
-import Header from 'grommet/components/Header'
-import Sidebar from 'grommet/components/Sidebar';
-import Menu from 'grommet/components/Menu';
-import Footer from 'grommet/components/Footer';
-import Button from 'grommet/components/Button';
-import User from 'grommet/components/icons/base/User';
 import { NavLink } from 'react-router-dom';
+import NavigationClose from 'material-ui/svg-icons/navigation/close';
+import AppBar from 'material-ui/AppBar';
+import IconButton from 'material-ui/IconButton';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
+import './nav.css'
+
+import FlatButton from 'material-ui/FlatButton'
+
+
+const MyNavLinks = () => (
+  <ToolbarGroup>
+    <FlatButton label="Workouts" labelStyle={{color: 'white'}}   containerElement={<NavLink to="workouts"/>}/>
+    <FlatButton label="Settings" labelStyle={{color: 'white'}}  containerElement={<NavLink to="settings" />}/>
+    <FlatButton label="myworkouts" labelStyle={{color: 'white'}} containerElement={<NavLink to="myworkouts" />}/>
+  </ToolbarGroup> 
+);
 
 class Nav extends Component{
   render(){
     return(
-      <Sidebar colorIndex='neutral-4'>
-        <Header pad='medium'
-          justify='between'>
-          <Title>
-            Workout Genius
-          </Title>
-        </Header>
-        <Box flex='grow'
-          justify='start'>
-          <Menu primary={true}>
-            <NavLink
-            to="/Home"
-            activeClassName="selected">
-              Home
-            </NavLink>
-            <NavLink
-            to="/Workouts"
-            activeClassName="selected">
-              Workouts
-            </NavLink>
-            <NavLink
-            to="/FAQ"
-            activeClassName="selected">
-              FAQ
-            </NavLink>
-            <NavLink
-            to="/about"
-            activeClassName="selected">
-             About
-            </NavLink>
-          </Menu>
-        </Box>
-        <Footer pad='medium'>
-          <Button icon={<User />} />
-        </Footer>
-      </Sidebar>
+      <MuiThemeProvider>
+        <AppBar
+        className='navbar'
+        title={<span >Workout genius</span>}
+        iconElementRight={<MyNavLinks />}
+        >
+        
+        
+        </AppBar>
+      </MuiThemeProvider>
     )
   }
 }

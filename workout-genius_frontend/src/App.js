@@ -5,10 +5,8 @@ import Login from './components/Login'
 import axios from 'axios'
 import Split from 'grommet/components/Split';
 import Nav from './components/Nav'
-import '../node_modules/grommet-css'
-const Test = () => (
-  <h1> hello from test</h1>
-)
+import Landing from './components/Landing'
+import '../node_modules/grommet-css';
 
 class App extends Component {
   constructor(props){
@@ -34,39 +32,20 @@ class App extends Component {
     .catch((err)=>{console.log(err);})
   }
   
-  logInWithFacebook(){
-    window.location.href = '/api/auth/facebook' 
-    // do a call to backed and fire off LOGIN
-    // return loggedin user ID from local database
-  }
-  signUpWithFacebook(){
-    window.location.href = '/api/auth/facebook' 
-    // do a call to backed and fire off SIGNUP
-    // return loggedin user ID from local database
-  }
+
   
   render() {
     return (
       <BrowserRouter>
-        <Split flex='right'>
-        <Nav />
-        <Switch>
-        { !this.state.user 
-        ?
-        <Route exact path='/' render={()=>(<Login 
-          loggedIn={this.state.loggedIn} 
-          user={this.state.user} 
-          logInWithFacebook={this.logInWithFacebook.bind(this)} 
-          signUpWithFacebook={this.signUpWithFacebook.bind(this)}
-        />)
-        } 
-        />
-        : 
-        <Route exact path='/' component={Test} />
         
+        <Switch>
+        { !this.state.loggedIn 
+        ?
+        <Route exact path='/' component={Landing} />
+        : 
+        <Route exact path='/' component={Nav} />
         }
         </Switch>
-        </Split>
       </BrowserRouter>
     
     );
