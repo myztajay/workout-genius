@@ -6,7 +6,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import { NavLink } from 'react-router-dom';
 import './landing.css'
 
-class Landing extends Component{
+class LandingContainer extends Component{
   logInWithFacebook(){
     window.location.href = '/api/auth/facebook' 
   }
@@ -45,5 +45,5 @@ class Landing extends Component{
   }
 }
 
-export default Landing
+export default LandingContainer
 

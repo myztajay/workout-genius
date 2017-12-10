@@ -5,9 +5,9 @@ import Login from './components/Login'
 import axios from 'axios'
 import Split from 'grommet/components/Split';
 import Nav from './components/Nav'
-import Landing from './components/Landing'
+import LandingContainer from './containers/LandingContainer'
 import '../node_modules/grommet-css';
-import Feed from './components/Feed'
+import FeedContainer from './containers/FeedContainer'
 
 
 class App extends Component {
@@ -39,15 +39,14 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        
         <Switch>
         { !this.state.loggedIn 
         ?
-        <Route exact path='/' component={Landing} />
+        <Route exact path='/' component={LandingContainer} />
         :
         <div> 
         <Nav />
-        <Route exact path='/' component={Feed} />
+        <Route exact path='/' component={FeedContainer} />
         </div>
         }
         </Switch>
