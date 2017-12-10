@@ -7,6 +7,8 @@ import Split from 'grommet/components/Split';
 import Nav from './components/Nav'
 import Landing from './components/Landing'
 import '../node_modules/grommet-css';
+import Feed from './components/Feed'
+
 
 class App extends Component {
   constructor(props){
@@ -42,8 +44,11 @@ class App extends Component {
         { !this.state.loggedIn 
         ?
         <Route exact path='/' component={Landing} />
-        : 
-        <Route exact path='/' component={Nav} />
+        :
+        <div> 
+        <Nav />
+        <Route exact path='/' component={Feed} />
+        </div>
         }
         </Switch>
       </BrowserRouter>
