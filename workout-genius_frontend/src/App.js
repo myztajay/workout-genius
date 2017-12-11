@@ -48,7 +48,7 @@ class App extends Component {
         <div> 
         <Nav />
         <Route exact path='/' component={FeedContainer} />
-        <Route exact path='/workouts/new' component={NewWorkoutContainer} />
+        <Route exact path='/workouts/new' render={()=> <NewWorkoutContainer user={this.state.user} />} />
         </div>
         }
         </Switch>

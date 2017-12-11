@@ -19,7 +19,8 @@ class NewWorkoutContainer extends Component{
       exerciseInput: '',
       exerciseSelected: false,
       name: '',
-      description: ''
+      description: '',
+      creator: this.props.user
     }
   }
   
@@ -46,6 +47,7 @@ class NewWorkoutContainer extends Component{
       name: this.state.name,
       exercises: this.state.exercises,
       description: this.state.description,
+      creator: this.state.creator,
     })
     .then((res)=>{
       console.log(res);
