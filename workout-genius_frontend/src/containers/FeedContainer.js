@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import {Card, CardTitle } from 'material-ui/Card';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import FlatButton from 'material-ui/FlatButton';
-import FontIcon from 'material-ui/FontIcon';
-import './FeedContainer.css';
-import Divider from 'material-ui/Divider';
+import './feedcontainer.css';
 import { Link } from 'react-router-dom';
 
 

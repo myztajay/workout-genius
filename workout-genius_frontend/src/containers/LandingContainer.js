@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
-import Title from 'grommet/components/Title';
+import {Card, CardActions, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import { NavLink } from 'react-router-dom';
 import './landing.css'
 
 class LandingContainer extends Component{

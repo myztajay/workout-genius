@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import Login from './components/Login'
 import axios from 'axios'
-import Split from 'grommet/components/Split';
 import Nav from './components/Nav'
 import LandingContainer from './containers/LandingContainer'
 import '../node_modules/grommet-css';
 import FeedContainer from './containers/FeedContainer'
+import NewWorkoutContainer from './containers/NewWorkoutContainer'
 
 
 class App extends Component {
@@ -23,8 +22,10 @@ class App extends Component {
   componentDidMount(){
     axios.get('/api/auth/userauth')
     .then((res)=>{
-      this.setState({user: res.data, loggedIn: true})    
-    })
+      if(res.data !== ''){
+        this.setState({user: res.data, loggedIn: true})    
+      }
+    })  
     .catch((err)=>{console.log(err);})
     
     axios.get('/api/workouts')
@@ -47,6 +48,7 @@ class App extends Component {
         <div> 
         <Nav />
         <Route exact path='/' component={FeedContainer} />
+        <Route exact path='/workouts/new' component={NewWorkoutContainer} />
         </div>
         }
         </Switch>

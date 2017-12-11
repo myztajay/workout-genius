@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import AppBar from 'material-ui/AppBar';
-import IconButton from 'material-ui/IconButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
+import { ToolbarGroup } from 'material-ui/Toolbar';
 import './nav.css'
-
 import FlatButton from 'material-ui/FlatButton'
 
 
@@ -27,8 +24,6 @@ class Nav extends Component{
         title={<span >Workout genius</span>}
         iconElementRight={<MyNavLinks />}
         >
-        
-        
         </AppBar>
       </MuiThemeProvider>
     )
