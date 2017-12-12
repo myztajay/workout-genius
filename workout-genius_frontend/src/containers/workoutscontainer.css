@@ -1,10 +1,14 @@
-.card-workout{
-  max-width: 300px;
-  min-width: 300px;
-  min-height: 350px;
-  margin: 10px
-}
 
-.workout-img{
-  width:100%;
+
+@media screen and (min-width: 992px){
+  .card-workout{
+    max-width: 300px;
+    min-width: 300px;
+    min-height: 350px;
+    margin: 10px
+  }
+  
+  .workout-img{
+    width:100%;
+  }
 }
