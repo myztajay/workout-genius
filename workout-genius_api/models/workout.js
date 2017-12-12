@@ -9,6 +9,9 @@ const workoutSchema = new mongoose.Schema({
   description:{
     type: String,
   },
+  exercises:{
+    type: Array,
+  },
   intensity:{
     type: Number
   },
