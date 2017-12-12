@@ -1,7 +1,7 @@
 const db = require('../models');
 
 exports.getWorkouts = (req,res)=>{
-  db.Workout.find()
+  db.Workout.find().populate('creator')
   .then((todos)=>{
     res.json(todos)
   })

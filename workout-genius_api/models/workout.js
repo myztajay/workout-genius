@@ -6,6 +6,12 @@ const workoutSchema = new mongoose.Schema({
     type: String,
     required: 'every workout needs a name'
   },
+  description:{
+    type: String,
+  },
+  intensity:{
+    type: Number
+  },
   Rating: {
     type: Number
   },
