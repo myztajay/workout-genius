@@ -7,7 +7,7 @@ router.route('/')
   .get(helpers.getWorkouts)
   .post(helpers.createWorkout);
 
-router.route('/:todoId')
+router.route('/:workout')
   .get(helpers.showWorkout)
   .put(helpers.updateWorkout)
   .delete(helpers.deleteWorkout)

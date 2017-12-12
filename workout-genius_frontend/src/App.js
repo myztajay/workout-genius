@@ -6,6 +6,7 @@ import Nav from './components/Nav'
 import LandingContainer from './containers/LandingContainer'
 import '../node_modules/grommet-css';
 import FeedContainer from './containers/FeedContainer'
+import WorkoutsContainer from './containers/WorkoutsContainer'
 import NewWorkoutContainer from './containers/NewWorkoutContainer'
 
 
@@ -49,6 +50,7 @@ class App extends Component {
         <Nav />
         <Route exact path='/' component={FeedContainer} />
         <Route exact path='/workouts/new' render={()=> <NewWorkoutContainer user={this.state.user} />} />
+        <Route exact path='/workouts' component={WorkoutsContainer}/>
         </div>
         }
         </Switch>
