@@ -20,6 +20,7 @@ class NewWorkoutContainer extends Component{
       exerciseSelected: false,
       name: '',
       description: '',
+      intensity: '',
       creator: this.props.user
     }
   }
@@ -41,12 +42,22 @@ class NewWorkoutContainer extends Component{
       name: e.target.value
     })
   }
-  
+  handleDescriptionChange(e){
+    this.setState({
+      description: e.target.value
+    })
+  }
+  handleSliderChange(e,n){
+    this.setState({
+      intensity: n*100
+    })
+  }
   handleSubmit(){
     axios.post('/api/workouts', {
       name: this.state.name,
       exercises: this.state.exercises,
       description: this.state.description,
+      intensity: this.state.intensity,
       creator: this.state.creator,
     })
     .then((res)=>{
@@ -93,7 +104,7 @@ class NewWorkoutContainer extends Component{
             hintText="Message Field"
             floatingLabelText="Description"
             fullWidth={true}
-            
+            onChange={this.handleDescriptionChange.bind(this)}
           />
           <br />
           <TextField
@@ -106,8 +117,8 @@ class NewWorkoutContainer extends Component{
           <FloatingActionButton >
           <ContentAdd onClick={this.addExercise.bind(this)}/>
           </FloatingActionButton>
-          <h5>Intesity</h5>
-          <br /><Slider step={0.20} value={0.5} />
+          <h5>Intesity</h5><br />
+          <Slider step={0.33} value={0.33} onChange={this.handleSliderChange.bind(this)} />
         </form> 
         </Card>
         </div>
