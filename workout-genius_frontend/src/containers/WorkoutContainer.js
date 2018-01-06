@@ -35,12 +35,12 @@ class WorkoutContainer extends Component {
         <Card className="card-margin ">
           <CardText className="flex-flexible"><h1>sdfsdfsdfsdf</h1></CardText>
           <div className="column-container flex-flexible">
-            <CardTitle title={exercise} />
-            <CardTitle subtitle="description"/>
+            <CardTitle title={exercise.name} />
+            <CardTitle subtitle={exercise.description}/>
           </div>
           <div className='flex-row flex-flexible'>
-            <div className="circle flex-center text-white text-center">reps<br />12</div>
-            <div className="circle flex-center text-white text-center">sets<br />5</div>
+            <div className="circle flex-center text-white text-center">reps<br />{exercise.reps}</div>
+            <div className="circle flex-center text-white text-center">sets<br />{exercise.sets}</div>
           </div>
         </Card>
       )
