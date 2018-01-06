@@ -25,7 +25,7 @@ class WorkoutsContainer extends Component{
   renderWorkouts(){
     return this.state.workouts.map((workout)=>{
       return(
-        <Link to={'/workouts/' + workout._id} >
+        <Link to={'/workout/' + workout._id} >
           <Card className='card-workout'>
             <CardTitle titleColor="#2979FF"  />
             <CardMedia

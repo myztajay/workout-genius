@@ -21,7 +21,7 @@ exports.createWorkout  = (req,res)=>{
 }
 
 exports.showWorkout = (req, res)=>{
-  db.Workout.findById(req.params.todoId)
+  db.Workout.findById(req.params.workout)
   .then((foundWorkout)=>{
     res.json(foundWorkout)
   })

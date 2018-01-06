@@ -60,9 +60,7 @@ class NewWorkoutContainer extends Component{
       intensity: this.state.intensity,
       creator: this.state.creator,
     })
-    .then((res)=>{
-      console.log(res);
-    })
+  
   }
   
   renderRepsAndSets(){

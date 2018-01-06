@@ -2,8 +2,7 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  margin: 0;
-  
+  margin: 0;  
 }
 
 .workout-form{
