@@ -11,19 +11,21 @@ class WorkoutContainer extends Component {
     this.state = {
       id: props.match.params.workout,
       name: '',
-      description: '', 
-      exercises: []
+      description: '',
+      intensity: '', 
+      exercises: [],
     }
   }
   
   componentWillMount(){
     axios.get(`/api/workouts/${this.state.id}`)
       .then((res)=>{
-        const { name, description, exercises } = res.data
+        const { name, description, exercises, intensity } = res.data
         this.setState({
           name,
           description,
-          exercises
+          exercises,
+          intensity
         })
     });
   }
@@ -48,6 +50,7 @@ class WorkoutContainer extends Component {
   }
 
   render(){
+    
     return(
       <MuiThemeProvider> 
         <div className="main-container">
@@ -55,9 +58,9 @@ class WorkoutContainer extends Component {
               <div className="flex-row flex-center">
                 <div className="column-container title-desc">
                   <CardTitle  title={this.state.name} subtitle={`${this.state.description}`} />
-                  <h1>Stars</h1>
-                </div>
-                  <h1>GUAGE</h1>
+                  <h1>Stars</h1>  
+                  </div>
+                  <h1>Guage</h1>
                 </div>
               {this.renderExercisesInWorkout()}        
             </Card>

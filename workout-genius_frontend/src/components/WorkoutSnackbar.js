@@ -1,6 +1,5 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Snackbar from 'material-ui/Snackbar';
-import RaisedButton from 'material-ui/RaisedButton';
 
 export const WorkoutSnackbar = (props) =>{
     return (
