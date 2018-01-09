@@ -8,6 +8,7 @@ import {Card} from 'material-ui/Card';
 import { IntensitySlider } from '../components/IntensitySlider'
 import RaisedButton from 'material-ui/RaisedButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
+import { WorkoutSelectField } from '../components/WorkoutSelectField';
 import axios from 'axios';
 
 
@@ -23,11 +24,10 @@ class NewWorkoutContainer extends Component{
       name: '',
       description: '',
       intensity: 33,
+      value: 0,
       creator: this.props.user
     }
   }
-  
-
   
   addExercise(){
     let newExercise = { 
@@ -48,31 +48,41 @@ class NewWorkoutContainer extends Component{
       exerciseInput: e.target.value
     })
   }
+  
   handleSetsInputChange(e){
     this.setState({
       setsInput: e.target.value
     })
   }
+  
   handleRepsInputChange(e){
     this.setState({
       repsInput: e.target.value
     })
   }
+  
   handleTitleChange(e){
     this.setState({
       name: e.target.value
     })
   }
+  
   handleDescriptionChange(e){
     this.setState({
       description: e.target.value
     })
   }
+  
   handleSliderChange(e,n){
     this.setState({
       intensity: n*100
     })
   }
+  
+  handleSelectChange(event, index, value){
+    this.setState({value});
+  }
+  
   handleSubmit(){
     axios.post('/api/workouts', {
       name: this.state.name,
@@ -129,6 +139,7 @@ class NewWorkoutContainer extends Component{
           </FloatingActionButton>
           <h4>Intensity</h4>      
           <IntensitySlider intensity={this.state.intensity} handleSliderChange={this.handleSliderChange.bind(this)}  />
+          <WorkoutSelectField value={this.state.value} handleSelectChange={this.handleSelectChange.bind(this)} />
         </form> 
         </Card>
         </div>
