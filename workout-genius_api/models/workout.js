@@ -15,6 +15,9 @@ const workoutSchema = new mongoose.Schema({
   intensity:{
     type: Number
   },
+  workout_type:{
+    type: Number
+  },
   Rating: {
     type: Number
   },
