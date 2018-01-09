@@ -24,7 +24,7 @@ function renderExercises(exercises){
 
 const customColumnStyle = { width: '20%'};
 export const ExerciseTable = ({exercises}) => (
-  <Table fixedHeader={false} style={{ tableLayout: 'auto' }} className='exercise-table'>
+  <Table fixedHeader={false} style={{ tableLayout: 'auto', marginTop: '20px'}} className='exercise-table'>
   <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
     <TableRow>
       <TableHeaderColumn style={customColumnStyle}>Exercise</TableHeaderColumn>
