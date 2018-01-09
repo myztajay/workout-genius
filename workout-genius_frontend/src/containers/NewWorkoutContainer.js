@@ -119,9 +119,9 @@ class NewWorkoutContainer extends Component{
         this.setState({
           snackbarOpen: true,
           snackbarMessage: "Workout was created. " ,
-        })  
-      }
-      setTimeout(()=>{this.setState({ redirect: true})} , 1500);      
+        })
+        setTimeout(()=>{this.setState({ redirect: true})} , 1500);    
+      }    
     })
   }
       
