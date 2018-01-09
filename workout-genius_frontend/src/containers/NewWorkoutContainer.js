@@ -24,7 +24,7 @@ class NewWorkoutContainer extends Component{
       name: '',
       description: '',
       intensity: 33,
-      value: 0,
+      workoutType: 0,
       creator: this.props.user
     }
   }
@@ -79,8 +79,8 @@ class NewWorkoutContainer extends Component{
     })
   }
   
-  handleSelectChange(event, index, value){
-    this.setState({value});
+  handleSelectChange(event, index, workoutType){
+    this.setState({workoutType});
   }
   
   handleSubmit(){
@@ -89,6 +89,7 @@ class NewWorkoutContainer extends Component{
       exercises: this.state.exercises,
       description: this.state.description,
       intensity: this.state.intensity,
+      workout_type: this.state.workoutType,
       creator: this.state.creator,
     })
   }
@@ -139,7 +140,7 @@ class NewWorkoutContainer extends Component{
           </FloatingActionButton>
           <h4>Intensity</h4>      
           <IntensitySlider intensity={this.state.intensity} handleSliderChange={this.handleSliderChange.bind(this)}  />
-          <WorkoutSelectField value={this.state.value} handleSelectChange={this.handleSelectChange.bind(this)} />
+          <WorkoutSelectField value={this.state.workoutType} handleSelectChange={this.handleSelectChange.bind(this)} />
         </form> 
         </Card>
         </div>
