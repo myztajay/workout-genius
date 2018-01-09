@@ -8,7 +8,6 @@ import { ToolbarGroup } from 'material-ui/Toolbar';
 import './nav.css'
 import FlatButton from 'material-ui/FlatButton'
 
-
 const MyNavLinks = () => (
   <ToolbarGroup>
     <FlatButton label="Workouts" labelStyle={{color: 'white'}}   containerElement={<NavLink to="/workouts"/>}/>
@@ -23,7 +22,9 @@ class Nav extends Component{
   super(props);
   this.state = {open: false};
   }
+  
   handleToggle = () => this.setState({open: !this.state.open})
+  handleClose = () => this.setState({open: false});
   
   render(){
     return(
@@ -32,16 +33,18 @@ class Nav extends Component{
         className='navbar'
         title={<span >Workout genius</span>}
         iconElementRight={<MyNavLinks />}
-        onClick={this.handleToggle}
+        onLeftIconButtonClick={this.handleToggle}
         >
         </AppBar>
         <Drawer 
+          docked={false}
           open={this.state.open}
+          onRequestChange={(open) => this.setState({open})}
           containerStyle={{backgroundColor:'#ecf0f1',}}
         >
-          <NavLink to="/"><MenuItem>Home</MenuItem></NavLink>
-          <NavLink to="/workouts"><MenuItem>Workouts</MenuItem></NavLink>
-          <MenuItem>Menu Item 2</MenuItem>
+          <NavLink to="/"><MenuItem onClick={this.handleClose}>Home</MenuItem></NavLink>
+          <NavLink to="/workouts"><MenuItem onClick={this.handleClose}>Workouts</MenuItem></NavLink>
+          <NavLink to="/myworkouts"><MenuItem onClick={this.handleClose}>My Workouts</MenuItem></NavLink>
        </Drawer>
       </MuiThemeProvider>
     )

@@ -10,7 +10,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import { WorkoutSelectField } from '../components/WorkoutSelectField';
 import { WorkoutSnackbar } from '../components/WorkoutSnackbar';
-import { Redirect } from 'react-router'
+import { Redirect } from 'react-router';
 import axios from 'axios';
 
 
