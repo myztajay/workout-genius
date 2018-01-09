@@ -9,6 +9,8 @@ import { IntensitySlider } from '../components/IntensitySlider'
 import RaisedButton from 'material-ui/RaisedButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import { WorkoutSelectField } from '../components/WorkoutSelectField';
+import { WorkoutSnackbar } from '../components/WorkoutSnackbar';
+import { Redirect } from 'react-router'
 import axios from 'axios';
 
 
@@ -25,7 +27,9 @@ class NewWorkoutContainer extends Component{
       description: '',
       intensity: 33,
       workoutType: 0,
-      creator: this.props.user
+      creator: this.props.user,
+      snackbarOpen: false,
+      snackbarMessage: "bro..."
     }
   }
   
@@ -83,6 +87,18 @@ class NewWorkoutContainer extends Component{
     this.setState({workoutType});
   }
   
+  handleSnackbarClick = () => {
+    this.setState({
+      snackbarOpen: true,
+    });
+  };
+
+  handleSnackbarRequestClose = () => {
+    this.setState({
+      snackbarOpen: false,
+    });
+  };
+  
   handleSubmit(){
     axios.post('/api/workouts', {
       name: this.state.name,
@@ -92,12 +108,38 @@ class NewWorkoutContainer extends Component{
       workout_type: this.state.workoutType,
       creator: this.state.creator,
     })
+    .then((res)=>{
+      // check res for error, future fix server will respond with 400 so catch can work
+      if(res.data.hasOwnProperty('errors')){
+        this.setState({
+          snackbarOpen: true,
+          snackbarMessage: "Something went wrong, double check required fields" 
+        })
+      } else {
+        this.setState({
+          snackbarOpen: true,
+          snackbarMessage: "Workout was created. " ,
+        })  
+      }
+      setTimeout(()=>{this.setState({ redirect: true})} , 1500);      
+    })
   }
       
   render(){
+    const { redirect } = this.state;
+
+    if (redirect) {
+      return <Redirect to='/workouts'/>;
+    }
     return(    
       <MuiThemeProvider>
         <div className="main-container">
+        <WorkoutSnackbar 
+        snackbarOpen={this.state.snackbarOpen} 
+        handleSnackbarClick={this.handleSnackbarClick.bind(this)}
+        handleSnackbarRequestClose={this.handleSnackbarRequestClose.bind(this)}
+        snackbarMessage={this.state.snackbarMessage}
+        />
         <div className="form-container">
         <Card className="card">
         <form className="workout-form">
