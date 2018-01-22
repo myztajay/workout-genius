@@ -7,6 +7,7 @@ import MenuItem from 'material-ui/MenuItem';
 import { ToolbarGroup } from 'material-ui/Toolbar';
 import './nav.css'
 import FlatButton from 'material-ui/FlatButton'
+import axios from 'axios';
 
 const MyNavLinks = () => (
   <ToolbarGroup>
@@ -26,6 +27,7 @@ class Nav extends Component{
   handleToggle = () => this.setState({open: !this.state.open})
   handleClose = () => this.setState({open: false});
   
+
   render(){
     return(
       <MuiThemeProvider>
@@ -45,6 +47,7 @@ class Nav extends Component{
           <NavLink to="/"><MenuItem onClick={this.handleClose}>Home</MenuItem></NavLink>
           <NavLink to="/workouts"><MenuItem onClick={this.handleClose}>Workouts</MenuItem></NavLink>
           <NavLink to="/myworkouts"><MenuItem onClick={this.handleClose}>My Workouts</MenuItem></NavLink>
+          <MenuItem onClick={this.props.handleLogout}>Logout</MenuItem>
        </Drawer>
       </MuiThemeProvider>
     )

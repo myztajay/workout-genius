@@ -36,6 +36,15 @@ class App extends Component {
     .catch((err)=>{console.log(err);})
   }
   
+  handleLogout(){
+    console.log("it happened");
+    axios.get('/api/auth/logout')
+    this.setState({
+      loggedIn: false,
+      user:{}
+    })
+  }
+  
   render() {
     return (
       <BrowserRouter>
@@ -45,7 +54,7 @@ class App extends Component {
         <Route exact path='/' component={LandingContainer} />
         :
         <div> 
-        <Nav />
+        <Nav handleLogout={this.handleLogout.bind(this)}/>
         <Route exact path='/' component={FeedContainer} />
         <Route exact path='/workouts' component={WorkoutsContainer}/>
         <Route exact path='/workouts/new' render={()=> <NewWorkoutContainer user={this.state.user} />} />
