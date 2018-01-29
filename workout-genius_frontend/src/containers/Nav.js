@@ -48,7 +48,7 @@ class Nav extends Component{
           <NavLink to="/workouts"><MenuItem onClick={this.handleClose}>Workouts</MenuItem></NavLink>
           <NavLink to="/myworkouts"><MenuItem onClick={this.handleClose}>My Workouts</MenuItem></NavLink>
           <MenuItem onClick={this.props.handleLogout}>Logout</MenuItem>
-       </Drawer>
+        </Drawer>
       </MuiThemeProvider>
     )
   }

@@ -28,9 +28,10 @@
     text-align: center;
   }
   
-  .card-text{
+  p.card-text{
     font-size: 16;
     color:#2979FF;
+    padding: 0;
   }
   
   h4{

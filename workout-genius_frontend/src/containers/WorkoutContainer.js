@@ -34,16 +34,15 @@ class WorkoutContainer extends Component {
     return this.state.exercises.map((exercise)=>{
       // THE JSX return should be refactored into own component when finalized
       return(
-        <Card className="card-margin ">
-          <CardText className="flex-flexible"><h1>sdfsdfsdfsdf</h1></CardText>
-          <div className="column-container flex-flexible">
-            <CardTitle title={exercise.name} />
-            <CardTitle subtitle={exercise.description}/>
-          </div>
-          <div className='flex-row flex-flexible'>
-            <div className="circle flex-center text-white text-center">reps<br />{exercise.reps}</div>
-            <div className="circle flex-center text-white text-center">sets<br />{exercise.sets}</div>
-          </div>
+        <Card className="card-margin exercise-card" >          
+            <div className="column-container flex-flexible">
+              <CardTitle title={exercise.name}/>
+              <CardTitle subtitle="subtitle"/>
+            </div>
+            <div className='flex-row flex-flexible flex-end'>
+              <div className="circle flex-center text-white text-center">reps<br />{exercise.reps}</div>
+              <div className="circle flex-center text-white text-center">sets<br />{exercise.sets}</div>
+            </div>
         </Card>
       )
     })
@@ -58,9 +57,8 @@ class WorkoutContainer extends Component {
               <div className="flex-row flex-center">
                 <div className="column-container title-desc">
                   <CardTitle  title={this.state.name} subtitle={`${this.state.description}`} />
-                  <h1>Stars</h1>  
-                  </div>
-                  <h1>Guage</h1>
+                  <p>Likes - comments</p>
+                  </div>      
                 </div>
               {this.renderExercisesInWorkout()}        
             </Card>

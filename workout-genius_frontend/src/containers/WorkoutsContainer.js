@@ -40,6 +40,7 @@ class WorkoutsContainer extends Component{
               <div className="info"><h4>likes</h4><br /><p className="card-text">20</p></div>
             </div>
             <Divider />
+            <p>{workout.creator[0].display_name}</p>
           </Card>
         </Link>
       )

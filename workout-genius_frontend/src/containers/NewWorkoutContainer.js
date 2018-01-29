@@ -27,7 +27,7 @@ class NewWorkoutContainer extends Component{
       description: '',
       intensity: 33,
       workoutType: 0,
-      creator: this.props.user,
+      creator: props.user,
       snackbarOpen: false,
       snackbarMessage: "bro..."
     }
