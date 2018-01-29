@@ -10,6 +10,6 @@ router.route('/')
 router.route('/:workout')
   .get(helpers.showWorkout)
   .put(helpers.updateWorkout)
-  .delete(helpers.deleteWorkout)
+  .delete(helpers.deleteWorkout);
 
 module.exports = router;

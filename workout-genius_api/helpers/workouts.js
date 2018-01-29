@@ -30,10 +30,10 @@ exports.showWorkout = (req, res)=>{
   })
 }
 
-
 exports.updateWorkout = (req, res)=>{
-  db.Workout.findOneAndUpdate({_id: req.params.todoId},  req.body, {new: true})
-  .then((updatedWorkout)=>{
+  console.log("updated file");
+  db.Workout.findOneAndUpdate({_id: req.params.workout},  req.body, {new: true})
+  .then((updatedWorkout)=>{  
     res.json(updatedWorkout)
   })
   .catch((err)=>{
@@ -42,7 +42,7 @@ exports.updateWorkout = (req, res)=>{
 }
 
 exports.deleteWorkout = (req, res)=>{
- db.Workout.remove({_id: req.params.todoId})
+ db.Workout.remove({_id: req.params.workout})
  .then(()=>{
    res.send('deleted')
  })

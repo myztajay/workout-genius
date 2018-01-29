@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Card, CardTitle, CardText} from 'material-ui/Card';
 import './workoutcontainer.css'
 import axios from 'axios';
 import RaisedButton from 'material-ui/RaisedButton';
 import { Link } from 'react-router-dom';
+import { DeleteDialog } from '../components/DeleteDialog'
 
 class WorkoutContainer extends Component {
   
@@ -17,7 +19,9 @@ class WorkoutContainer extends Component {
       intensity: '', 
       exercises: [],
       creator: [],
-      user: props.user
+      user: props.user,
+      deleteDialogOpen: false,
+      redirect: false,
     }
   }
   
@@ -35,6 +39,17 @@ class WorkoutContainer extends Component {
     });
   }
   
+  onDelete(){
+    this.setState({ deleteDialogOpen: false})
+    if(this.state.user._id === this.state.creator[0]){
+      axios.delete(`/api/workouts/${this.state.id}`)
+      .then(()=>{this.setState({redirect: true})})
+    }
+  }
+  
+  handleDialogClose(){
+    this.setState({ deleteDialogOpen: false})
+  }
   renderExercisesInWorkout(){
     return this.state.exercises.map((exercise)=>{
       // THE JSX return should be refactored into own component when finalized
@@ -67,14 +82,24 @@ class WorkoutContainer extends Component {
             label="Delete"
             secondary={true}
             labelColor='white'
+            onClick={()=>this.setState({ deleteDialogOpen: true })}
+            />
+            <DeleteDialog 
+              deleteDialogOpen={this.state.deleteDialogOpen} 
+              onDelete={this.onDelete.bind(this)} 
+              handleDialogClose={this.handleDialogClose.bind(this)}
             />
         </p>
       )
     } else { <h1>not same</h1>}
   }
+  
 
   render(){
-    
+    const { redirect } = this.state;
+    if (redirect) {
+      return <Redirect to='/workouts'/>;
+    }
     return(
       <MuiThemeProvider> 
         <div className="main-container">

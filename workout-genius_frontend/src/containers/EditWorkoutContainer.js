@@ -5,6 +5,7 @@ import { ExerciseTable } from '../components/ExerciseTable'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import {Card} from 'material-ui/Card';
+import Dialog from 'material-ui/Dialog';
 import { IntensitySlider } from '../components/IntensitySlider'
 import RaisedButton from 'material-ui/RaisedButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
@@ -31,7 +32,7 @@ class EditWorkoutContainer extends Component{
       user: props.user,
       creator: '',
       snackbarOpen: false,
-      snackbarMessage: "bro..."
+      snackbarMessage: "bro...",
     }
   }
   
@@ -62,6 +63,12 @@ class EditWorkoutContainer extends Component{
       exerciseInput: '',
       setsInput: '',
       repsInput: '',
+    })
+  }
+  
+  handleDialogClose(){
+    this.setState({
+      deleteDialogOpen: false,
     })
   }
     
@@ -119,7 +126,7 @@ class EditWorkoutContainer extends Component{
   
   handleSubmit(){
     if(this.state.user._id === this.state.creator[0]){
-      axios.post('/api/workouts', {
+      axios.put(`/api/workouts/${this.state.workoutId}`, {
         name: this.state.name,
         exercises: this.state.exercises,
         description: this.state.description,
@@ -128,6 +135,7 @@ class EditWorkoutContainer extends Component{
         creator: this.state.creator,
       })
       .then((res)=>{
+        console.log(res);
         // check res for error, future fix server will respond with 400 so catch can work
         if(res.data.hasOwnProperty('errors')){
           this.setState({
@@ -152,6 +160,8 @@ class EditWorkoutContainer extends Component{
   }
       
   render(){
+
+   
     const { redirect } = this.state;
 
     if (redirect) {
@@ -218,7 +228,7 @@ class EditWorkoutContainer extends Component{
           <ExerciseTable exercises={this.state.exercises}/>
         </div>
         <div className="btn-container">
-          <RaisedButton label="Create Workout" primary={true} onClick={this.handleSubmit.bind(this)} />
+          <RaisedButton label="Edit Workout" primary={true} onClick={this.handleSubmit.bind(this)} />
         </div>
         </div>
       </MuiThemeProvider>
