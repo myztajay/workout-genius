@@ -8,7 +8,7 @@ export const WorkoutSelectField = (props) => {
           <SelectField
             floatingLabelText="Workout Type"
             floatingLabelStyle={{fontSize:"16", color:"black"}}
-            value={props.value}
+            value={props.workoutType}
             onChange={props.handleSelectChange}
           >
             <MenuItem value={0} primaryText="Select Type" />
