@@ -40,7 +40,8 @@ class WorkoutsContainer extends Component{
               <div className="info"><h4>likes</h4><br /><p className="card-text">20</p></div>
             </div>
             <Divider />
-            <p>{workout.creator[0].display_name}</p>
+            <div className='user-info'><img className='profile-img' src={`${workout.creator[0].facebook_photo}`} /><p>{workout.creator[0].display_name}</p></div>
+            
           </Card>
         </Link>
       )
