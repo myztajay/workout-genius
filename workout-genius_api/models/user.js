@@ -4,6 +4,9 @@ const userSchema = new mongoose.Schema({
   facebook_id: {
     type: Number
   },
+  facebook_photo:{
+    type: String,
+  },
   display_name: {
     type: String,
     required: 'Name cannot be blank'
@@ -15,7 +18,7 @@ const userSchema = new mongoose.Schema({
   email: {
     type: String,
     required: 'Email cannot be blank'
-  } 
+  }
 })
 
 const User = mongoose.model('User', userSchema);
