@@ -10,12 +10,12 @@ exports.passportInit = passport.use(new facebookStrategy({
   profileFields: ['id', 'displayName', 'email']
 },
 function(accessToken, refreshToken, profile, done) {
-   db.User.findOne({fbId : profile.id}, function(err, oldUser){
+   db.User.findOne({facebook_id : profile.id}, function(err, oldUser){
        if(oldUser){
            done(null,oldUser);
        }else{
            var newUser = new db.User({
-               facebook_idb : profile.id ,
+               facebook_id : profile.id ,
                email : profile.emails[0].value,
                display_name : profile.displayName,
                // picture: profile.picture
