@@ -8,6 +8,7 @@ import '../node_modules/grommet-css';
 import FeedContainer from './containers/FeedContainer'
 import WorkoutsContainer from './containers/WorkoutsContainer'
 import WorkoutContainer from './containers/WorkoutContainer'
+import EditWorkoutContainer from './containers/EditWorkoutContainer'
 import NewWorkoutContainer from './containers/NewWorkoutContainer'
 
 
@@ -58,7 +59,8 @@ class App extends Component {
         <Route exact path='/' component={FeedContainer} />
         <Route exact path='/workouts' component={WorkoutsContainer}/>
         <Route exact path='/workouts/new' render={()=> <NewWorkoutContainer user={this.state.user} />} />
-        <Route exact path='/workout/:workout' component={WorkoutContainer} />
+        <Route exact path='/workout/:workout' render={(props)=> <WorkoutContainer user={this.state.user}  {...props}/>} />
+        <Route exact path='/workout/edit/:workout' render={(props)=> <EditWorkoutContainer user={this.state.user} {...props}/>} />
         </div>
         }
         </Switch>

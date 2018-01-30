@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Card, CardTitle, CardText} from 'material-ui/Card';
 import './workoutcontainer.css'
 import axios from 'axios';
+import RaisedButton from 'material-ui/RaisedButton';
+import { Link } from 'react-router-dom';
+import { DeleteDialog } from '../components/DeleteDialog'
 
 class WorkoutContainer extends Component {
   
@@ -14,22 +18,38 @@ class WorkoutContainer extends Component {
       description: '',
       intensity: '', 
       exercises: [],
+      creator: [],
+      user: props.user,
+      deleteDialogOpen: false,
+      redirect: false,
     }
   }
   
   componentWillMount(){
     axios.get(`/api/workouts/${this.state.id}`)
       .then((res)=>{
-        const { name, description, exercises, intensity } = res.data
+        const { name, description, exercises, intensity, creator} = res.data
         this.setState({
           name,
           description,
           exercises,
-          intensity
+          intensity,
+          creator,
         })
     });
   }
   
+  onDelete(){
+    this.setState({ deleteDialogOpen: false})
+    if(this.state.user._id === this.state.creator[0]){
+      axios.delete(`/api/workouts/${this.state.id}`)
+      .then(()=>{this.setState({redirect: true})})
+    }
+  }
+  
+  handleDialogClose(){
+    this.setState({ deleteDialogOpen: false})
+  }
   renderExercisesInWorkout(){
     return this.state.exercises.map((exercise)=>{
       // THE JSX return should be refactored into own component when finalized
@@ -47,9 +67,39 @@ class WorkoutContainer extends Component {
       )
     })
   }
+  
+  renderAdminButtons(){
+    if(this.state.user._id === this.state.creator[0]){
+      return( 
+        <p> 
+          <Link to={`edit/${this.state.id}`}>
+            <RaisedButton
+            label="Edit"
+            primary={true}
+            />
+          </ Link>  
+            <RaisedButton
+            label="Delete"
+            secondary={true}
+            labelColor='white'
+            onClick={()=>this.setState({ deleteDialogOpen: true })}
+            />
+            <DeleteDialog 
+              deleteDialogOpen={this.state.deleteDialogOpen} 
+              onDelete={this.onDelete.bind(this)} 
+              handleDialogClose={this.handleDialogClose.bind(this)}
+            />
+        </p>
+      )
+    } else { <h1>not same</h1>}
+  }
+  
 
   render(){
-    
+    const { redirect } = this.state;
+    if (redirect) {
+      return <Redirect to='/workouts'/>;
+    }
     return(
       <MuiThemeProvider> 
         <div className="main-container">
@@ -58,6 +108,7 @@ class WorkoutContainer extends Component {
                 <div className="column-container title-desc">
                   <CardTitle  title={this.state.name} subtitle={`${this.state.description}`} />
                   <p>Likes - comments</p>
+                  {this.renderAdminButtons()}
                   </div>      
                 </div>
               {this.renderExercisesInWorkout()}        

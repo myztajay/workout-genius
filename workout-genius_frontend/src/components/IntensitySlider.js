@@ -59,7 +59,7 @@ const renderSliderTips = (intensity)=>{
 export const IntensitySlider = (props) =>{
   return(
     <div>
-    <Slider min={0.33} max={0.99}step={0.33} value={0.33} onChange={props.handleSliderChange} />
+    <Slider min={0.33} max={0.99}step={0.33} value={props.intensity} onChange={props.handleSliderChange} />
     {renderSliderTips(props.intensity)} 
     </div> 
   )
