@@ -3,6 +3,7 @@ import {Card, CardTitle, CardMedia } from 'material-ui/Card';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Link } from 'react-router-dom';
 import Divider from 'material-ui/Divider';
+import { WorkoutFilter } from '../components/WorkoutFilter';
 import axios from 'axios'
 import './workoutscontainer.css';
 
@@ -10,7 +11,8 @@ class WorkoutsContainer extends Component{
   constructor(props){
     super(props)  
     this.state = {
-      workouts: []
+      workouts: [],
+      filterArr: []
     }
   }
   
@@ -19,6 +21,22 @@ class WorkoutsContainer extends Component{
     .then((res)=>{
       this.setState({
         workouts: res.data
+      })
+    })
+  }
+  
+  onFilterToggle(type){
+    if(this.state.filterArr.length === 0){
+      this.setState({
+          filterArr: [type]
+      })
+    }
+    let newArr = this.state.filterArr.filter((workoutType)=>{
+      if(workoutType != type){
+        return true
+      }
+      this.setState({
+          filterArr: [...this.state.filterArr, ...newArr]
       })
     })
   }
@@ -51,7 +69,14 @@ class WorkoutsContainer extends Component{
   render(){
     return(
       <MuiThemeProvider>
-        <div className="main-container">
+      <div className="filter-div">
+        <WorkoutFilter name="Crossfit" abrev="CF" onFilterToggle={this.onFilterToggle.bind(this)} /> 
+        <WorkoutFilter name="Hybrid" abrev="H" onFilterToggle={this.onFilterToggle.bind(this)}  /> 
+        <WorkoutFilter name="BodyBuilding" abrev="BB" onFilterToggle={this.onFilterToggle.bind(this)} /> 
+        <WorkoutFilter name="Calisthetics" abrev="CS" onFilterToggle={this.onFilterToggle.bind(this)} /> 
+        <WorkoutFilter name="Cardio" abrev="CO" onFilterToggle={this.onFilterToggle.bind(this)} /> 
+      </div>
+        <div className="main-container">            
           {this.renderWorkouts()}
         </div>
       </MuiThemeProvider>
