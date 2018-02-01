@@ -11,7 +11,9 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-router-dom": "^4.2.2",
-    "react-svg-gauge": "^1.0.6"
+    "react-svg-gauge": "^1.0.6",
+    "semantic-ui-css": "^2.2.14",
+    "semantic-ui-react": "^0.77.2"
   },
   "devDependencies": {
     "react-scripts": "1.0.17"

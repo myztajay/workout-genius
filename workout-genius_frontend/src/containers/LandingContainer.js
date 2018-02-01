@@ -21,17 +21,11 @@ class LandingContainer extends Component{
       <Card>
         <CardTitle title="Workout Genius" subtitle="Workout Genius" />
         <CardText>
-          Find thousand of workouts created by people like you 
-          
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-          Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-          Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+          Find hundreds of workouts created by people like you. 
         </CardText>
         <CardActions>          
-          <FlatButton label="Action1" onClick={this.signUpWithFacebook} />
-          
-          <FlatButton label="Action2" />
+          <FlatButton label="Facebook Login" hoverColor='#1f4da5' labelStyle={{color:'white'}} backgroundColor='#365899'color='white' onClick={this.signUpWithFacebook} />  
+          <FlatButton label="Sign up" hoverColor='#9df79b' backgroundColor= '#c8ffc4' onClick={this.signUpWithFacebook} />
         </CardActions>
       </Card>
       </MuiThemeProvider>
