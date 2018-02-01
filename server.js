@@ -27,4 +27,4 @@ app.use('/api/auth', authRoutes);
 
 app.listen(process.env.PORT || 4040, function(){
   console.log("Express Server is Running :)")
-}
+})
