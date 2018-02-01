@@ -20,7 +20,8 @@
     "mongoose": "^4.13.5",
     "passport": "^0.4.0",
     "passport-facebook": "^2.1.1",
-    "phantomjs": "^2.1.7"
+    "phantomjs": "^2.1.7",
+    "dotenv": "^4.0.0"
   },
   "devDependencies": {
     "dotenv": "^4.0.0"
