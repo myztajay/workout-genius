@@ -25,4 +25,6 @@ app.use(cors({origin: 'http://localhost:3000'}));
 app.use('/api/workouts', workoutRoutes);
 app.use('/api/auth', authRoutes);
 
-app.listen(process.env.PORT || 4040)
+app.listen(process.env.PORT || 4040, function(){
+  console.log("Express Server is Running :)")
+}
