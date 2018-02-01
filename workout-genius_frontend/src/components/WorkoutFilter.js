@@ -1,20 +1,16 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Avatar from 'material-ui/Avatar';
 import Chip from 'material-ui/Chip';
-import FontIcon from 'material-ui/FontIcon';
-import SvgIconFace from 'material-ui/svg-icons/action/face';
-import {blue300, indigo900} from 'material-ui/styles/colors';
 
-export const WorkoutFilter = ({name, abrev, onFilterToggle})=> {
-  
+
+export const WorkoutFilter = ({name, abrev, onFilterToggle, type, active})=> {
   return(
     <Chip
-      value={0}
       style={{margin: "10px"}}
-      backgroundColor={blue300}
-      onClick={() => onFilterToggle(name)}
+      
+      onClick={() => onFilterToggle(type)}
      >
-      <Avatar size={32} color={blue300} backgroundColor={indigo900}>
+      <Avatar size={32} color={'white'} backgroundColor={'#2979FF'}>
        {abrev}
       </Avatar>
       {name}

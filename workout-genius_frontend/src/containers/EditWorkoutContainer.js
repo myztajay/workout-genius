@@ -5,7 +5,6 @@ import { ExerciseTable } from '../components/ExerciseTable'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import {Card} from 'material-ui/Card';
-import Dialog from 'material-ui/Dialog';
 import { IntensitySlider } from '../components/IntensitySlider'
 import RaisedButton from 'material-ui/RaisedButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';

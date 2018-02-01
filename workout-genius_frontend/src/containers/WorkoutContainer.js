@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { Card, CardTitle, CardText} from 'material-ui/Card';
+import { Card, CardTitle } from 'material-ui/Card';
 import './workoutcontainer.css'
 import axios from 'axios';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -91,7 +91,7 @@ class WorkoutContainer extends Component {
             />
         </p>
       )
-    } else { <h1>not same</h1>}
+    } 
   }
   
 
