@@ -4,19 +4,22 @@ const User = require('./user')
 const workoutSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: 'every workout needs a name'
+    required: 'Every workout needs a name'
   },
   description:{
     type: String,
+    required: "Every workout need a description"
   },
   exercises:{
     type: Array,
+    required: "Every workout need at least one exercise"
   },
   intensity:{
     type: Number
   },
   workout_type:{
-    type: Number
+    type: Number,
+    required: "Please specify the workout type"
   },
   Rating: {
     type: Number
