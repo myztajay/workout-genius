@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Workout = require('./workout');
 
 const userSchema = new mongoose.Schema({
   facebook_id: {
@@ -18,7 +19,8 @@ const userSchema = new mongoose.Schema({
   email: {
     type: String,
     required: 'Email cannot be blank'
-  }
+  },
+  liked: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Workout' }]
 })
 
 const User = mongoose.model('User', userSchema);
