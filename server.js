@@ -10,7 +10,9 @@ const expressSession = require('express-session');
 const db = require('./models');
 const workoutRoutes = require('./routes/workouts');
 const authRoutes = require('./routes/auth');
+const userRoutes = require('./routes/users');
 const authHelpers = require('./helpers/auth');
+
 
 
 //middleware
@@ -24,7 +26,8 @@ app.use(cors({origin: 'http://localhost:3000'}));
 
 app.use('/api/workouts', workoutRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/users', userRoutes);
 
 app.listen(process.env.PORT || 4040, function(){
-  console.log("Express Server is Running :)")
-})
+  console.log("Express Server is Running :)");
+});
