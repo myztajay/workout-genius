@@ -28,7 +28,8 @@ const workoutSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
-  creator: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
+  creator: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+  liked: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
 })
 
 const Workout = mongoose.model('Workout', workoutSchema);
