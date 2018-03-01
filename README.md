@@ -1,8 +1,5 @@
 # Workout-Genius-API
 
-# Instructions:
-You can make request to any of the routes below and get back either specific or multiple JSON objects.
-
 ## Installation:
 Docker install coming soon...
 1. Download repository.
@@ -20,6 +17,9 @@ MONGO_URL = < CREATE A DATABASE WITH MONGOLABS AND PUT URL HERE > - https://mlab
 ```
 5. In your command prompt or bash Navigate to the repo and run ```npm start```
 
+## Usage
+
+You can make request to any of the RESTful end points below recieve data in JSON formate.
 
 ## The root url is:
 LOCAL: localhost://4040
@@ -57,6 +57,6 @@ These routes deal with auth and the user.
 ---
 
 # Front-end repository
-[Workout Genius React Front End](https://github.com/myztajay/workout-genius-frontend)
+# [Workout Genius React Front End](https://github.com/myztajay/workout-genius-frontend)
 
 
