@@ -38,5 +38,5 @@ These routes deal with auth and the user.
 4. Cors - Resolves cors issue when receiving request from another local host
 ---
 
-#Front-end repository
+# Front-end repository
 [Workout Genius React Front End](https://github.com/myztajay/workout-genius-frontend)
