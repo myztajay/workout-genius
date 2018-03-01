@@ -8,7 +8,7 @@ LOCAL: localhost://4040
 
 DEPLOYED: https://radiant-headland-78469.herokuapp.com/
 
-### For Example [Example API call](https://radiant-headland-78469.herokuapp.com/api/workouts)
+### [Example API call](https://radiant-headland-78469.herokuapp.com/api/workouts)
  a GET request to __https://radiant-headland-78469.herokuapp.com//api/workouts__ would return a JSON with all workouts.
 
 ---
