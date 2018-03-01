@@ -9,7 +9,7 @@ Docker install coming soon...
 2. Install mongoDB(if you dont already have it)
 3. In your command prompt or bash Navigate to the repo and run ```npm install```
 4. Create and ".env" like so:
-
+```
 EXPRESS_SESSION_SECRET = < CAN BE ANYTHING >
 
 FACEBOOK_APP_ID = < CREATE AN APP AND GET YOUR ID > - https://developers.facebook.com/
@@ -17,7 +17,7 @@ FACEBOOK_APP_ID = < CREATE AN APP AND GET YOUR ID > - https://developers.faceboo
 FACEBOOK_SECRET_ID =  < YOUR APP SECRET >
 
 MONGO_URL = < CREATE A DATABASE WITH MONGOLABS AND PUT URL HERE > - https://mlab.com/ - ITS FREE
-
+```
 5. In your command prompt or bash Navigate to the repo and run ```npm start```
 
 
