@@ -1,0 +1,10 @@
+version: '3'
+services:
+  api:
+    links:
+      - mongo-container
+    build: .
+    ports:
+      - "4040:4040"
+  mongo-container:
+    image: "mongo"
