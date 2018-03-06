@@ -5,7 +5,7 @@ Docker install coming soon...
 1. Download repository.
 2. Install mongoDB(if you dont already have it)
 3. In your command prompt or bash Navigate to the repo and run ```npm install```
-4. Create and ".env" like so:
+4. Create a ".env" in the root directory and add the following to it:
 ```
 EXPRESS_SESSION_SECRET = < CAN BE ANYTHING >
 
