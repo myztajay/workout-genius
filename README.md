@@ -24,7 +24,7 @@ You can make request to any of the RESTful end points below recieve data in JSON
 ## The root url is:
 LOCAL: localhost://4040
 
-DEPLOYED: https://radiant-headland-78469.herokuapp.com/
+MY DEPLOYED HEROKU INSTANCE: https://radiant-headland-78469.herokuapp.com/
 
 ### [Example API call](https://radiant-headland-78469.herokuapp.com/api/workouts)
  a GET request to __https://radiant-headland-78469.herokuapp.com//api/workouts__ would return a JSON with all workouts.
