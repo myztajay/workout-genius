@@ -15,7 +15,8 @@ FACEBOOK_SECRET_ID =  < YOUR APP SECRET >
 
 MONGO_URL = < CREATE A DATABASE WITH MONGOLABS AND PUT URL HERE > - https://mlab.com/ - ITS FREE
 ```
-5. In your command prompt or bash Navigate to the repo and run ```npm start```
+5. start mongod by typing ```mongod``` in command prompt
+6. In your command prompt or bash Navigate to the repo and run ```npm start```
 
 ## Usage
 
