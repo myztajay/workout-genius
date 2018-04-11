@@ -4,8 +4,78 @@
     <meta charset="utf-8">
     <title></title>
   </head>
+  <style>
+  table, th, td {
+    border: 1px solid black;
+    padding: 10px;
+  }
+  </style>
   <body>
-    <h1>hello from file</h1>
+    <h3>Usage</h3>
+    <p>You can make request to any of the RESTful end points below recieve data in JSON format.</p>
+    
+    <table>
+      <tr>
+        <th>Path</th>
+        <th>Method</th>
+        <th>Use</th>  
+      </tr>
+      <tr>
+        <td>/api/workouts/</td>
+        <td>POST</td>
+        <td>Posting a new workout</td>
+      </tr>
+      <tr>
+        <td>/api/workouts/</td>
+        <td>GET</td>
+        <td>Get all workouts</td>
+      </tr>
+      <tr>
+        <td>/api/workout/:id</td>
+        <td>GET</td>
+        <td>Shows individual workout</td>
+      </tr>
+      <tr>
+        <td>/api/workout/:id</td>
+        <td>DELETE</td>
+        <td>Deletes individual workout</td>
+      </tr>
+      <tr>
+        <td>/api/workout/:id</td>
+        <td>PUT</td>
+        <td>Edits individual workout</td>
+      </tr>
+    </table>
+    
+    <h3>Other Routes:</h3>
+    <p>These routes deal with auth and the user.<p>
+    <p style="color: red">Facebook is in the process of updating it's security practices. because of this Oauth & these routes are currently down</p>
+    
+    
+    <table>
+      <tr>
+        <th>Path</th>
+        <th>Method</th>
+        <th>Use</th>  
+      </tr>
+      <tr>
+        <td>/api/auth/facebook/userauth</td>
+        <td>GET</td>
+        <td>Retieves authenticated user</td>
+      </tr>
+      <tr>
+        <td>/api/auth/facebook</td>
+        <td>GET</td>
+        <td>Authenticates & request user's info from Facebook</td>
+      </tr>
+      <tr>
+        <td>/api/auth/facebook/callback</td>
+        <td>GET</td>
+        <td>Determines if authentication was successful and redirects</td>
+      </tr>
+    </table>
+    
+    
     
 <a href="/api/auth/facebook">Log In with Facebook</a>
   </body>

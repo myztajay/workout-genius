@@ -15,7 +15,7 @@ exports.logout = (req,res) =>  {
         next();
     };
  };
-  //Passport facebook strategy
+//Passport facebook strategy
 exports.passportInit= passport.use(new facebookStrategy({
     clientID: process.env.FACEBOOK_APP_ID ,
     clientSecret: process.env.FACEBOOK_SECRET_ID,

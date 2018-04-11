@@ -42,12 +42,13 @@ MY DEPLOYED HEROKU INSTANCE: https://radiant-headland-78469.herokuapp.com/
 
 ## Other Routes:
 These routes deal with auth and the user.
+Facebook is in the process of updating it's security practices. because of this Oauth & these routes are currently down.
 
-| PATH                       | METHOD | USE                                            |
-| -------------------------- |:------:| ----------------------------------------------:|
-|  api/auth/facebook/userauth| GET    | retieves authenticated user                    |
-| /auth/facebook             | GET    | performs request for user info from facebook    |
-| /auth/facebook/callback    | GET    | performs request for user info from facebook    |
+| PATH                            | METHOD | USE                                                         |
+| ------------------------------- |:------:| -----------------------------------------------------------:|
+| /api/auth/facebook/userauth     | GET    | Retieves authenticated user                                 |
+| /api/auth/facebook              | GET    | Authenticates & request user's info from Facebook           |
+| /api/auth/facebook/callback     | GET    | Determines if authentication was successful and redirects   |
 
 ---
 
