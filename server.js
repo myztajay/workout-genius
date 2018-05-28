@@ -13,8 +13,6 @@ const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/users');
 const authHelpers = require('./helpers/auth');
 
-
-
 //middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
