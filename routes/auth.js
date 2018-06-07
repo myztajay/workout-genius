@@ -9,15 +9,9 @@ router.route('/facebook')
   .get(authHelpers.authFacebook)
   
 router.route('/facebook/callback')
-  .get(authHelpers.authFacebookCallback)
+  .get(authHelpers.authFacebookCallback, (req,res) => res.redirect('/'))
 
 router.route('/logout')
-  .get(function (req, res){
-    console.log("logoff")
-    delete req.session;
-    req.session.destroy(function (err) {
-      res.redirect('/'); //Inside a callback… bulletproof!
-    });
-})
+  .get(authHelpers.logout)
   
 module.exports = router;
